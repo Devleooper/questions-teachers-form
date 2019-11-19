@@ -43,3 +43,8 @@ form{
   margin-bottom: 2%;
   display: block;
 }
+
+#spinner{
+  position: absolute;
+  left: 45%;
+}

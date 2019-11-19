@@ -4,6 +4,15 @@
 
 export const environment = {
   production: false
+  , firebaseConfig: {
+    apiKey: 'AIzaSyCkkeYc1IpQlac0g6ecMekhU8WGbXI5Fb8',
+    authDomain: 'questions-2a3c5.firebaseapp.com',
+    databaseURL: 'https://questions-2a3c5.firebaseio.com',
+    projectId: 'questions-2a3c5',
+    storageBucket: '',
+    messagingSenderId: '411133758726',
+    appId: '1:411133758726:web:0385fec422abd4dc'
+  }
 };
 
 /*

@@ -1,12 +1,12 @@
 export class Teacher {
-  teacherId: string = '';
-  teacherName: string = '';
-  teacherTopic: string = '';
+  teacherId = '';
+  teacherName = '';
+  teacherTopic = '';
   teacherContact: ContactInfo;
 }
 
 export class ContactInfo {
-  email: string = '';
+  email = '';
   contactPhone: number = null;
 }
 
