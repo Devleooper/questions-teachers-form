@@ -4,12 +4,14 @@
       rgba(148, 187, 233, 1) 100%);
 
   overflow-y: auto;
-  max-height: 100%;
+  height: 100%;
 }
 
 #register-form-card{
   background: whitesmoke;
   margin-top: 1%;
+  height: -moz-available;
+  border-radius: 10px;
 }
 
 .input-div{
@@ -19,14 +21,14 @@
 
 .input-value{
   width: 80%;
-  display: block;
+  display: inherit;
   margin: 0 auto;
 }
 
 .desc-text{
   max-width: 40%;
   text-align: center;
-  color: rgb(69, 120, 230);
+  color: rgb(70, 14, 173);
   margin-top: 2%;
   margin-bottom: 2%;
 }
@@ -36,3 +38,8 @@
   color: whitesmoke;
 }
 
+
+form{
+  margin-bottom: 2%;
+  display: block;
+}
