@@ -1,7 +1,7 @@
 import { SaveService } from './../services/save/save.service';
-import { ContactInfo, Teacher } from './../models/models';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Teacher } from './../models/models';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -13,6 +13,7 @@ export class RegisterFormComponent implements OnInit {
 
   registerForm: FormGroup;
   isLoading: boolean;
+  @ViewChild('form', { static: false }) form;
 
   areas = [
     { value: '1', viewValue: 'English' },
@@ -20,36 +21,37 @@ export class RegisterFormComponent implements OnInit {
     { value: '3', viewValue: 'Culture' }
   ];
 
-  constructor(private builder: FormBuilder, private provider: SaveService, private snackBar: MatSnackBar) { }
+  constructor(private builder: FormBuilder, private provider: SaveService, private snackBar: MatSnackBar) {
+    this.registerForm = this.builder.group({
+      teacherId: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      teacherName: ['', [Validators.required, Validators.maxLength(50)]],
+      teacherTopic: ['', [Validators.required]],
+      teacherContact: this.builder.group({
+        email: ['', [Validators.required, Validators.email]],
+        contactPhone: ['', [Validators.pattern('^[0-9]*$')]]
+      })
+    });
+  }
 
   ngOnInit() {
-    this.registerForm = this.getRegisterForm();
-    this.registerForm.valueChanges.subscribe(console.log);
     this.isLoading = false;
   }
 
-
-  private getRegisterForm() {
-    return this.builder.group({
-      teacherId: '',
-      teacherName: '',
-      teacherTopic: '',
-      teacherContact: this.builder.group(new ContactInfo())
-    });
-  }
 
   public saveTeacher() {
     this.isLoading = true;
     const payload = this.registerForm.value as Teacher;
     this.provider.addTeacher(payload).then(() => {
+
       this.registerForm.reset();
+      this.form.resetForm();
       this.snackBar.open('teacher added successfully', '', { duration: 3000 });
       this.isLoading = false;
     }).catch((err) => {
       this.snackBar.open('there was an error processing your request , try later!.', '', { duration: 3000 });
       this.registerForm.reset();
       this.isLoading = false;
-    })
+    });
   }
 
 }

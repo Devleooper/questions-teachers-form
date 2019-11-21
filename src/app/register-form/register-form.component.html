@@ -6,8 +6,8 @@
       </div>
     </div>
     <mat-card-content id="register-form-content">
-      <form [formGroup]="registerForm" (ngSubmit)="saveTeacher()" >
-          <h2 class="desc-text">Teacher registry</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="saveTeacher()" #form="ngForm">
+        <h2 class="desc-text">Teacher registry</h2>
         <mat-form-field class="input-value">
           <input matInput placeholder="teacher-code" formControlName="teacherId">
         </mat-form-field>
@@ -22,19 +22,20 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div id="spinner" *ngIf="isLoading" >
+        <div id="spinner" *ngIf="isLoading">
           <mat-spinner></mat-spinner>
         </div>
         <h3 class="desc-text">Contact information</h3>
         <div formGroupName="teacherContact">
-            <mat-form-field class="input-value">
-                <input matInput placeholder="email" formControlName="email">
-              </mat-form-field>
-              <mat-form-field class="input-value">
-                  <input matInput placeholder="number" formControlName="contactPhone">
-                </mat-form-field>
+          <mat-form-field class="input-value">
+            <input matInput placeholder="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="input-value">
+            <input matInput placeholder="number" formControlName="contactPhone">
+          </mat-form-field>
         </div>
-        <button class="input-value submit-btn" mat-button color="primary">Registry</button>
+        <button class="input-value submit-btn" [disabled]="!registerForm.valid" mat-button
+          color="primary">Registry</button>
       </form>
     </mat-card-content>
   </div>
