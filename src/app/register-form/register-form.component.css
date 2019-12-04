@@ -7,25 +7,30 @@
   height: 100%;
 }
 
-#register-form-card{
+#register-form-card {
   background: whitesmoke;
   margin-top: 1%;
   height: -moz-available;
   border-radius: 10px;
 }
 
-.input-div{
+
+#questions-logo-div {
+  margin: 2% auto;
+}
+
+.input-div {
   width: 100%;
 }
 
 
-.input-value{
+.input-value {
   width: 80%;
   display: inherit;
   margin: 0 auto;
 }
 
-.desc-text{
+.desc-text {
   max-width: 40%;
   text-align: center;
   color: rgb(70, 14, 173);
@@ -33,18 +38,22 @@
   margin-bottom: 2%;
 }
 
-.submit-btn{
-  background:rgb(70, 14, 173);
+.submit-btn {
+  background: rgb(70, 14, 173);
   color: whitesmoke;
 }
 
+.submit-btn:disabled {
+  color: rgb(0, 0, 0);
+}
 
-form{
+
+form {
   margin-bottom: 2%;
   display: block;
 }
 
-#spinner{
+#spinner {
   position: absolute;
   left: 45%;
 }

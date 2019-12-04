@@ -1,6 +1,6 @@
 import { SaveService } from './../services/save/save.service';
 import { Teacher } from './../models/models';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
