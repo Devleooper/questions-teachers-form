@@ -11,16 +11,11 @@
   background: whitesmoke;
   margin-top: 1%;
   height: -moz-available;
-  border-radius: 10px;
 }
 
 
 #questions-logo-div {
   margin: 2% auto;
-}
-
-.input-div {
-  width: 100%;
 }
 
 
@@ -33,27 +28,45 @@
 .desc-text {
   max-width: 40%;
   text-align: center;
-  color: rgb(70, 14, 173);
+  color: rgb(28, 120, 196);
   margin-top: 2%;
   margin-bottom: 2%;
 }
 
 .submit-btn {
-  background: rgb(70, 14, 173);
+  background: rgb(28, 120, 196);
   color: whitesmoke;
+  width: 50%;
 }
 
-.submit-btn:disabled {
-  color: rgb(0, 0, 0);
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }
 
 
 form {
-  margin-bottom: 2%;
+  margin-bottom: 5%;
   display: block;
 }
 
 #spinner {
-  position: absolute;
-  left: 45%;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 20%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::ng-deep .mat-snack-bar-container {
+  background: rgb(28, 120, 196);
+}
+
+
+::ng-deep .mat-simple-snackbar-action {
+  color: white;
 }

@@ -1,6 +1,6 @@
 import { SaveService } from './../services/save/save.service';
-import { Teacher } from './../models/models';
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { SignUpRequest, SignUpResponse } from './../models/models';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,13 +23,11 @@ export class RegisterFormComponent implements OnInit {
 
   constructor(private builder: FormBuilder, private provider: SaveService, private snackBar: MatSnackBar) {
     this.registerForm = this.builder.group({
-      teacherId: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      teacherName: ['', [Validators.required, Validators.maxLength(50)]],
-      teacherTopic: ['', [Validators.required]],
-      teacherContact: this.builder.group({
-        email: ['', [Validators.required, Validators.email]],
-        contactPhone: ['', [Validators.pattern('^[0-9]*$')]]
-      })
+      code: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      user_name: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+      topic: ['', [Validators.required]],
+      email: ['', [Validators.required
+        , Validators.pattern('^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(konradlorenz)\.edu\.co$')]]
     });
   }
 
@@ -40,16 +38,18 @@ export class RegisterFormComponent implements OnInit {
 
   public saveTeacher() {
     this.isLoading = true;
-    const payload = this.registerForm.value as Teacher;
-    this.provider.addTeacher(payload).then(() => {
+    const payload = this.registerForm.value as SignUpRequest;
+    payload.password = payload.code.toString();
+    payload.role = 'Teacher';
 
-      this.registerForm.reset();
+    this.provider.addTeacherUser(payload).then((response: SignUpResponse) => {
       this.form.resetForm();
-      this.snackBar.open('teacher added successfully', '', { duration: 3000 });
+      this.snackBar.open(response.status, response.code.toString(), { duration: 3000 });
       this.isLoading = false;
     }).catch((err) => {
-      this.snackBar.open('there was an error processing your request , try later!.', '', { duration: 3000 });
-      this.registerForm.reset();
+      console.log(err);
+      this.snackBar.open(err.status, err.code.toString(), { duration: 3000 });
+      this.form.resetForm();
       this.isLoading = false;
     });
   }

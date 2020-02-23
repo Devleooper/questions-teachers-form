@@ -1,5 +1,5 @@
 <div class="principal" fxLayout="center" fxLayoutAlign="center center">
-  <div id="register-form-card" fxFlex="60">
+  <div id="register-form-card" fxFlex="40">
     <div id="card-header">
       <div id="questions-logo-div" fxLayout="center" fxLayoutAlign="center">
         <img id="questions-logo" src="../../assets/questions-logo-clean.png" alt="questions!">
@@ -9,14 +9,14 @@
       <form [formGroup]="registerForm" (ngSubmit)="saveTeacher()" #form="ngForm">
         <h2 class="desc-text">Teacher registry</h2>
         <mat-form-field class="input-value">
-          <input matInput placeholder="teacher-code" formControlName="teacherId">
+          <input matInput placeholder="teacher-code" formControlName="code">
         </mat-form-field>
         <mat-form-field class="input-value">
-          <input matInput placeholder="name" formControlName="teacherName">
+          <input matInput placeholder="name" formControlName="user_name">
         </mat-form-field>
         <mat-form-field class="input-value">
           <mat-label>Area</mat-label>
-          <mat-select formControlName="teacherTopic">
+          <mat-select formControlName="topic">
             <mat-option *ngFor="let area of areas" [value]="area.value">
               {{area.viewValue}}
             </mat-option>
@@ -26,16 +26,12 @@
           <mat-spinner></mat-spinner>
         </div>
         <h3 class="desc-text">Contact information</h3>
-        <div formGroupName="teacherContact">
-          <mat-form-field class="input-value">
-            <input matInput placeholder="email" formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="input-value">
-            <input matInput placeholder="number" formControlName="contactPhone">
-          </mat-form-field>
+        <mat-form-field class="input-value">
+          <input matInput  placeholder="email" formControlName="email">
+        </mat-form-field>
+        <div class="submit-btn-container" *ngIf="registerForm.valid">
+          <button class="submit-btn" mat-button color="primary">Registry</button>
         </div>
-        <button class="input-value submit-btn" [disabled]="!registerForm.valid" mat-button
-          color="primary">Registry</button>
       </form>
     </mat-card-content>
   </div>
